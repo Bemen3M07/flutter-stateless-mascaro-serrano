@@ -12,7 +12,13 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Text('Hello World 2!'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text ('Welcome!'),
+              Text ('Start learning now')
+            ]
+            ),
         ),
       ),
     );
