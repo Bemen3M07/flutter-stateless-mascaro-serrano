@@ -15,4 +15,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/
+    - assets/dado/
+    - assets/img/
