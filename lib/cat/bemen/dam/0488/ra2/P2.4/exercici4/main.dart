@@ -119,24 +119,10 @@ class _DiceHomePageState extends State<DiceHomePage> {
       },
       child: Container(
         key: key,
-        width: 140,
-        height: 140,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.95),
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              blurRadius: 8,
-              offset: const Offset(0, 6),
-            )
-          ],
-        ),
         child: SvgPicture.asset(
           _assetFor(face),
-          width: 124,
-          height: 124,
+          width: 184,
+          height: 184,
           fit: BoxFit.contain,
         ),
       ),
