@@ -15,9 +15,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/dice1.svg
-    - assets/dice2.svg
-    - assets/dice3.svg
-    - assets/dice4.svg
-    - assets/dice5.svg
-    - assets/dice6.svg
+    - assets/
