@@ -1,23 +1,22 @@
-name: empty
-description: "A new Flutter project."
-publish_to: 'none'
-version: 0.1.0
+name: exercici4
+description: Simula el llançament de dos daus amb SVG i toast.
 
 environment:
-  sdk: ^3.5.4
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  faker: ^2.1.0
-  provider: ^6.0.5
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_svg: ^2.0.7     # per renderitzar SVG
+  fluttertoast: ^8.2.1    # per mostrar el Toast
 
 flutter:
   uses-material-design: true
+
   assets:
-    - assets/img/
+    - assets/dice1.svg
+    - assets/dice2.svg
+    - assets/dice3.svg
+    - assets/dice4.svg
+    - assets/dice5.svg
+    - assets/dice6.svg
