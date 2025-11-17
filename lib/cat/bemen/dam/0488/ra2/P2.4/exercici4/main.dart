@@ -41,7 +41,6 @@ class _DiceHomePageState extends State<DiceHomePage> {
       _right = _random.nextInt(6) + 1;
     });
 
-    // Si són dos sis, toast "JACKPOT!"
     if (_left == 6 && _right == 6) {
       Fluttertoast.showToast(
         msg: "JACKPOT!",
@@ -53,55 +52,60 @@ class _DiceHomePageState extends State<DiceHomePage> {
     }
   }
 
-  // Retorna el camí a l'asset SVG corresponent (assets/dice1.svg .. dice6.svg)
   String _assetFor(int face) => 'assets/dado/dice$face.svg';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Fons i estil similar a l'exemple; posa aquí una imatge de fons si vols
-      backgroundColor: const Color(0xFF0F4D3A), // fons verd fosc (canvia si vols)
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 22.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Botó superior com a barra
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _rollDice,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      padding: const EdgeInsets.symmetric(vertical: 14.0),
-                      shape: const StadiumBorder(),
-                    ),
-                    child: const Text(
-                      'ROLL THE DICE',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        
+      body: Container(
+        // Aquí ponemos la imagen de fondo (cover para llenar toda la pantalla)
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/dado/tapestry.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        // Mantener una capa semitransparente si quieres que los controles resalten
+        child: Container(
+          color: Colors.black.withOpacity(0.18), // opcional: máscara para contraste
+          child: SafeArea(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 22.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _rollDice,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 14.0),
+                          shape: const StadiumBorder(),
+                        ),
+                        child: const Text(
+                          'ROLL THE DICE',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.0,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-
-                const SizedBox(height: 28),
-
-                // Contenidor dels daus amb animació al canviar
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildAnimatedDice(_left, key: ValueKey('left_$_left')),
-                    const SizedBox(width: 24),
-                    _buildAnimatedDice(_right, key: ValueKey('right_$_right')),
+                    const SizedBox(height: 28),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildAnimatedDice(_left, key: ValueKey('left_$_left')),
+                        const SizedBox(width: 24),
+                        _buildAnimatedDice(_right, key: ValueKey('right_$_right')),
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
@@ -109,12 +113,10 @@ class _DiceHomePageState extends State<DiceHomePage> {
     );
   }
 
-  // Widget per al dau amb AnimatedSwitcher per fer una transició suau
   Widget _buildAnimatedDice(int face, {required Key key}) {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 360),
       transitionBuilder: (child, animation) {
-        // combinació d'opacitat i escala per a entrada/sortida
         return ScaleTransition(scale: animation, child: FadeTransition(opacity: animation, child: child));
       },
       child: Container(
