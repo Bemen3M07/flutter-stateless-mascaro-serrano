@@ -1,5 +1,5 @@
-name: exercici4
-description: Simula el llançament de dos daus amb SVG i toast.
+name: empty
+description: "A new Flutter project."
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -9,6 +9,7 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.7     # per renderitzar SVG
   fluttertoast: ^8.2.1    # per mostrar el Toast
+  provider: ^6.0.5
 
 flutter:
   uses-material-design: true
