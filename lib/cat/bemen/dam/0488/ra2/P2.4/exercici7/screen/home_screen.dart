@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-
+  //lista de las 3 pages
   final List<Widget> _pages = <Widget>[
     const Page1(),
     const Page2(),
@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //barra inferior con menu de pages
         title: const Text('Material App Bar'),
         actions: [
           TextButton(
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
+        //asignacion de label y icono a cada pagina
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

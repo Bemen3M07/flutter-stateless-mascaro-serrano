@@ -15,10 +15,12 @@ class _Page1State extends State<Page1> {
     return Center(
       child: Column(
         children: [
+          //se muestra el valor de counter
           Text(
             context.watch<CounterProvider>().counter.toString(),
             style: const TextStyle(fontSize: 50),
           ),
+          //boton que llama a función para sumar 1 al contador
           ElevatedButton(
               onPressed: () {
                 context.read<CounterProvider>().increment();

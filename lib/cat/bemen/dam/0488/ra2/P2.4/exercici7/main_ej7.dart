@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Provider Counter',
       theme: ThemeData(primarySwatch: Colors.purple),
 
-      home: const HomeScreen(), // Scaffold
-    ); // MaterialApp
+      home: const HomeScreen(),
+    );
   }
 }
