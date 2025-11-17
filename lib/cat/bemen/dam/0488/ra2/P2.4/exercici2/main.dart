@@ -1,64 +1,69 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyApp()); // Punto de entrada de la aplicación: lanza el widget raíz MyApp
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Say Hello App',
-      theme: ThemeData(primarySwatch: Colors.blueGrey),
-      home: SayHelloPage(),
+      title: 'Say Hello App', // Título de la aplicación (usado por el sistema en algunos contextos)
+      theme: ThemeData(primarySwatch: Colors.blueGrey), // Tema global: paleta base azul-gris
+      home: SayHelloPage(), // Pantalla inicial de la app (widget stateful)
     );
   }
 }
 
 class SayHelloPage extends StatefulWidget {
   @override
-  _SayHelloPageState createState() => _SayHelloPageState();
+  _SayHelloPageState createState() => _SayHelloPageState(); // Crea el estado asociado
 }
 
 class _SayHelloPageState extends State<SayHelloPage> {
   final TextEditingController _nameController = TextEditingController();
+  // Controller para leer/escuchar el texto introducido en el TextField
 
   void _showWelcomeDialog() {
     final name = _nameController.text.trim().isEmpty
         ? ' - '
         : _nameController.text.trim();
+    // Tomamos el texto del controlador, hacemos trim y si está vacío usamos ' - ' como valor por defecto
 
     const double topOffset = 500.0;
+    // Offset vertical desde la parte superior para posicionar el diálogo más abajo/arriba según se desee.
 
     showGeneralDialog(
       context: context,
-      barrierDismissible: true,
-      barrierLabel: 'Cerrar',
-      barrierColor: Colors.black54, // sombra detrás del diálogo
-      transitionDuration: Duration(milliseconds: 250),
+      barrierDismissible: true, // Permite cerrar el diálogo tocando fuera de él
+      barrierLabel: 'Cerrar', // Etiqueta accesible para el barrier
+      barrierColor: Colors.black54, // Sombra / overlay detrás del diálogo
+      transitionDuration: Duration(milliseconds: 250), // Duración de la animación de aparición
       pageBuilder: (context, animation, secondaryAnimation) {
         // pageBuilder debe devolver un widget que ocupe toda la pantalla.
-        // Usamos Align + Padding para situar el diálogo más arriba.
+        // Usamos Align + Padding para llevar el diálogo más arriba.
         return SafeArea(
+          // SafeArea evita que el contenido quede bajo la barra de estado/notch
           child: Builder(
             builder: (context) {
               return Material(
                 type: MaterialType.transparency,
+                // Usamos Material transparente para poder dibujar un contenido con sombra/elevación
                 child: Stack(
                   children: [
-                    // El contenido (el diálogo) alineado hacia arriba con un offset
+                    // El contenido alineado hacia arriba con un offset
                     Align(
                       alignment: Alignment.topCenter,
                       child: Padding(
                         padding: EdgeInsets.only(
-                          top: topOffset,
+                          top: topOffset, // desplazamiento desde la parte superior
                           left: 24,
                           right: 24,
                         ),
                         child: Material(
-                          // Material para que tenga sombra y aspecto de diálogo
+                          // Estilo del "card" que actúa como diálogo
                           color: Colors.grey[200],
-                          elevation: 8,
+                          elevation: 8, // sombra bajo el material para sensación flotante
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20), // bordes redondeados
                           ),
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -66,10 +71,9 @@ class _SayHelloPageState extends State<SayHelloPage> {
                               vertical: 18,
                             ),
                             width: double.infinity,
-                            // El tamaño mínimo para que no sea demasiado pequeño
-                            constraints: BoxConstraints(minHeight: 70),
+                            constraints: BoxConstraints(minHeight: 70), 
                             child: Text(
-                              'HELLO $name',
+                              'HELLO $name', // Texto que muestra el saludo, con el nombre leído
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -80,6 +84,7 @@ class _SayHelloPageState extends State<SayHelloPage> {
                         ),
                       ),
                     ),
+                    // Si se quisiera añadir más elementos al stack (por ejemplo un botón de cerrar flotante) se haría aquí.
                   ],
                 ),
               );
@@ -92,48 +97,49 @@ class _SayHelloPageState extends State<SayHelloPage> {
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _nameController.dispose(); // Importante: liberar el controlador cuando el State se destruye
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(title: Text('Say Hello'), elevation: 0),
+      backgroundColor: Colors.white, // Fondo de la pantalla
+      appBar: AppBar(title: Text('Say Hello'), elevation: 0), // AppBar con título y sin elevación
       body: Center(
         child: SingleChildScrollView(
+          // Permite hacer scroll si el teclado aparece o en pantallas pequeñas
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 30),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min, // Ajusta la columna al tamaño mínimo necesario
             children: [
-              // Campo de texto
+              // Bloque de texto
               TextField(
-                controller: _nameController,
+                controller: _nameController, // Conecta el TextField con el controlador
                 decoration: InputDecoration(
-                  labelText: 'Name',
-                  hintText: 'Introduce tu nombre',
+                  labelText: 'Name', // Etiqueta superior del TextField
+                  hintText: 'Introduce tu nombre', // Hint dentro del campo
                   filled: true,
-                  fillColor: Colors.grey[200],
+                  fillColor: Colors.grey[200], // Color de fondo del TextField
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8), // Borde redondeado
                   ),
                 ),
               ),
               SizedBox(height: 20),
-              // Botón para mostrar el diálogo
+              // Botón que cuando pulsas muestra el diálogo
               ElevatedButton(
-                onPressed: _showWelcomeDialog,
+                onPressed: _showWelcomeDialog, // Llama a la función que muestra el diálogo
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(
                     horizontal: 30.0,
                     vertical: 14.0,
                   ),
-                  shape: StadiumBorder(),
-                  backgroundColor: Color(0xFF233A50),
+                  shape: StadiumBorder(), // Forma tipo "píldora"
+                  backgroundColor: Color(0xFF233A50), // Color del botón
                 ),
                 child: Text(
-                  'SayHello',
+                  'SayHello', // Texto del botón
                   style: TextStyle(
                     fontSize: 18, // tamaño de letra
                     fontWeight: FontWeight.bold, // negrita
