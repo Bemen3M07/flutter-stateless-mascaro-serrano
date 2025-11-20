@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:empty/cat/bemen/dam/0488/ra2/P2.4/exercici4/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,11 +12,6 @@ class StatefulEx4Page extends StatefulWidget {
 }
 
 class _StatefulEx4PageState extends State<StatefulEx4Page> {
-  @override
-  State<DiceHomePage> createState() => _DiceHomePageState();
-}
-
-class _DiceHomePageState extends State<DiceHomePage> {
   final Random _random = Random();
   int _left = 1;
   int _right = 1;
@@ -54,11 +48,13 @@ class _DiceHomePageState extends State<DiceHomePage> {
         ),
         // Mantener una capa semitransparente si quieres que los controles resalten
         child: Container(
-          color: Colors.black.withOpacity(0.18), // opcional: máscara para contraste
+          color: Colors.black
+              .withOpacity(0.18), // opcional: máscara para contraste
           child: SafeArea(
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 22.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0, vertical: 22.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -87,7 +83,8 @@ class _DiceHomePageState extends State<DiceHomePage> {
                       children: [
                         _buildAnimatedDice(_left, key: ValueKey('left_$_left')),
                         const SizedBox(width: 24),
-                        _buildAnimatedDice(_right, key: ValueKey('right_$_right')),
+                        _buildAnimatedDice(_right,
+                            key: ValueKey('right_$_right')),
                       ],
                     ),
                   ],
@@ -104,7 +101,9 @@ class _DiceHomePageState extends State<DiceHomePage> {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 360),
       transitionBuilder: (child, animation) {
-        return ScaleTransition(scale: animation, child: FadeTransition(opacity: animation, child: child));
+        return ScaleTransition(
+            scale: animation,
+            child: FadeTransition(opacity: animation, child: child));
       },
       child: Container(
         key: key,
