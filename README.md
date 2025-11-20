@@ -1,5 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/XRrsqZ_g)
 
+P2.3
+
 
 <!-- Ejercicio 1 -->
 <!-- Ruta: flutter-stateless-mascaro-serrano/lib/cat/bemen/dam/0488/ra2/p3/exercici1/main1.dart -->
@@ -47,3 +49,7 @@ Documentación:
 
 Por ultimo, parte de la app del Exercici 5 (lista de mensajes). Añade una AppBar superior (títol centrat i icones visuals sense funcionalitat) i una barra inferior (BottomAppBar o BottomNavigationBar) també sense funcionalitat. Mantén el ListView.builder amb les Card dels missatges i el FloatingActionButton. 
 Para ejecutar, define el main() que haga runApp(const MainApp()) i un StatelessWidget que construeixi el MaterialApp, el Scaffold amb appBar, body, floatingActionButton i bottomNavigationBar/bottomAppBar.
+
+
+P2.4
+
